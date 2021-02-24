@@ -21,7 +21,7 @@ function Header() {
                     Adarsh
                 </Name>
                 <UserImage>
-                    <img src="https://i.imgur.com/6VBx3io.png" />
+                    <img src="https://i.imgur.com/6VBx3io.png" alt="No DP"/>
                 </UserImage>
             </UserContainer>
         </Container>
