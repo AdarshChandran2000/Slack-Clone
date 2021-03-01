@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import SendIcon from '@material-ui/icons/Send';
 import FormatBoldIcon from '@material-ui/icons/FormatBold';
@@ -13,13 +13,28 @@ import AttachFileIcon from '@material-ui/icons/AttachFile';
 import AlternateEmailIcon from '@material-ui/icons/AlternateEmail';
 import TextFieldsIcon from '@material-ui/icons/TextFields';
 
-function ChatInput() {
+function ChatInput({ sendMessage }) {
+
+    const [input, setInput] = useState("");
+    const send = (e) => {
+        e.preventDefault();
+        if(!input) return;
+        sendMessage(input)
+        setInput("");
+    }
+
     return (
         <Container>
             <InputContainer>
                 <form>
-                    <input type="text" placeholder="Message Here..."/>
-                    <SendButton>
+                    <input
+                        onChange={(e)=>setInput(e.target.value)} 
+                        type="text" 
+                        value={input}
+                        placeholder="Message Here..."/>
+                    <SendButton 
+                        type="submit"
+                        onClick={send}>
                         <Send/>                        
                     </SendButton>
                 </form>
@@ -48,6 +63,7 @@ function ChatInput() {
 export default ChatInput
 
 const Container = styled.div `
+    margin-top: 20px;
     padding-left: 20px;
     padding-right: 20px;
     padding-bottom: 24px;
@@ -77,7 +93,7 @@ const InputContainer = styled.div `
     }
 `
 
-const SendButton = styled.div `
+const SendButton = styled.button `
     background:  #007a5a;
     border-radius: 2px;
     width: 32px;
